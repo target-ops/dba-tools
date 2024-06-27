@@ -13,7 +13,8 @@ The `mysql` directory is your go-to place for MySQL-related automation:
   - `mydumper`
   - `myloader`
   - `percona-toolkit`
-  - `Dockerfile`
+  - `Docker`
+  - `mysqlkit`
   
   - **mysqlkit.sh**: CLI toolkit for MySQL database backup and restore. The MySQL Toolkit 🚀 supports the following commands:
     - **backup**: Create backups of AWS RDS DB MySQL tables and upload them to a Blob Store.
@@ -28,7 +29,7 @@ The `mysql` directory is your go-to place for MySQL-related automation:
 
 
 ## 🚀 Usage
-See each individual tools README
+See each individual tool's README
 
 ## 💡 Contributing
 We welcome contributions from the community! Feel free to contribute to the repository and submit pull requests.
