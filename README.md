@@ -1,25 +1,38 @@
-# 🚀 Target-Ops: Repo Name
+# 🚀 Target-Ops: dba-tools
 
-Welcome to **Repo Name**, Add Description
+Welcome to **dba-tools**,
 
 ## 🌟 Features
 
+### MySQL 🐬
+The `mysql` directory is your go-to place for MySQL-related automation:
+
+- **backup**: A Dockerized solution for logical backup and restore at scale of MySQL databases. Utilizing:
+  - `azcopy`
+  - `mysql`
+  - `mydumper`
+  - `myloader`
+  - `percona-toolkit`
+  - `Dockerfile`
+  
+  - **mysqlkit.sh**: CLI toolkit for MySQL database backup and restore. The MySQL Toolkit 🚀 supports the following commands:
+    - **backup**: Create backups of AWS RDS DB MySQL tables and upload them to a Blob Store.
+    - **restore**: Restore MySQL tables from Blob Storage.
+    - **test_script**: Test the script and display some diagnostic information.
+    - **run_command**: Execute SQL commands or MySQL Client commands.
+    - **restore_command**: Execute restore and run_command sequentially.
+
+---
 
 ## 📦 Installation
 
 
 ## 🚀 Usage
-
+See each individual tools README
 
 ## 💡 Contributing
-We welcome contributions from the community! Feel free to fork the repository and submit pull requests.
-```
-Fork the repository.
-Create a new branch: git checkout -b my-feature-branch.
-Make your changes and commit them: git commit -m 'Add some feature'.
-Push to the branch: git push origin my-feature-branch.
-Submit a pull request.
-```
+We welcome contributions from the community! Feel free to contribute to the repository and submit pull requests.
+
 ## Core required for ghpage
 https://github.com/jrnewton/github-readme-to-html 
 ```
