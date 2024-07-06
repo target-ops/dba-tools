@@ -1,0 +1,10 @@
+MBL=/usr/bin/mysqlbinlog
+MYSQLHOST=<DBHOSTDOMAIN>
+MYSQLPORT=<PORT>
+MYSQLUSER=<USER>
+MYSQLPASS=<PWD>
+BACKUPDIR=<DIR_TO_BACKUP_TO>
+# the starting binlog file name to start from, example: mysql-bin-changelog.123
+STARTFILE=< FROM SHOW SLAVE STATUS READ Master_Log_File field>
+# time to wait before reconnecting after failure
+RESPAWN=1
