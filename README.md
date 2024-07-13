@@ -2,7 +2,6 @@
 
 Welcome to **dba-tools**,
 
-## 🌟 Features
 
 ### MySQL 🐬
 The `mysql` directory is your go-to place for MySQL-related automation:
@@ -22,6 +21,20 @@ The `mysql` directory is your go-to place for MySQL-related automation:
     - **test_script**: Test the script and display some diagnostic information.
     - **run_command**: Execute SQL commands or MySQL Client commands.
     - **restore_command**: Execute restore and run_command sequentially.
+
+- ** 🌟 Replication Tools 🌟**
+  Useful Dockerfile:
+    - **Database Tools**: PostgreSQL, MySQL clients, and Percona Toolkit for   MySQL database management.
+    - **Networking Tools**: `net-tools`, `iproute2`, `dnsutils`, `traceroute`,    `telnet`, `tcpdump`, `nmap`, etc., for network analysis.
+    - **System Monitoring**: `htop`, `iftop`, `ncdu`, `psmisc` for monitoring     system resources.
+    - **Miscellaneous Utilities**: `curl`, `wget`, `jq`, `less`, `unzip`,   `zip`,  `tar`, `sudo`, etc., for various tasks.
+
+
+### AWS RDS 🗄️
+  - ** 🔄 replicate.sh 🔄
+
+    This script (`replicate.sh`) automates the process of replicating a master RDS MySQL database to a    replica, ensuring data synchronization across database instances. 🗄️➡️🗄️
+
 
 ---
 
