@@ -1,0 +1,13 @@
+SRC_HOST=example.eu-west-1.rds.amazonaws.com
+DST_HOST=replica.eu-west-1.rds.amazonaws.com
+
+SRC_USER=user
+DST_USER=user2
+SRC_SLV_USER=repl
+
+DB_NAME=app
+DB_PWD=password
+SRC_SLV_PWD=repl
+
+# source main-server-id
+SRC_ID=73907063
