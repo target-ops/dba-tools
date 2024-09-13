@@ -1,9 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "S3_BUCKET_NAME_HERE"
     encrypt = true
-    key     = "S3_KEY_HERE"
-    region  = "AWS_REGION_HERE"
   }
 }
 

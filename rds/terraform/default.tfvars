@@ -1,0 +1,7 @@
+region      = "us-east-1"
+environment = "prod"
+team        = "devops"
+vpc_id      = "vpc_123"
+sg_id       = "sg-adf123"
+subnet_id   = "subnet-123"
+kms_key_arn = ""

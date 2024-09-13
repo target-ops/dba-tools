@@ -2,35 +2,34 @@
 resource "aws_cloudwatch_metric_alarm" "cpu" {
   for_each            = local.dbs
   alarm_name          = "${each.key}-cpu-utilization"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "1"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/${each.value.cw_namespace}"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "85"
-  alarm_description   = "This alarm monitors DocDB cpu utilization above expected"
+  comparison_operator = "GreaterThanUpperThreshold"
+  evaluation_periods  = "5"
+  alarm_description   = "${each.value.cw_namespace} DB CPU utilization is above expected threshold.  Consider increase of DB instance size ${each.value.alarm_mitigation_description}"
   treat_missing_data  = "ignore"
-  dimensions = {
-    DBInstanceIdentifier = each.key
+  alarm_actions       = [module.lambda_function.lambda_function_arn]
+  ok_actions          = [module.lambda_function.lambda_function_arn]
+  datapoints_to_alarm = 5
+  threshold_metric_id = "ad1"
+  metric_query {
+    id          = "m1"
+    return_data = true
+    period      = 0
+    metric {
+      dimensions = {
+        "DBInstanceIdentifier" = each.key
+      }
+      metric_name = "CPUUtilization"
+      namespace   = "AWS/${each.value.cw_namespace}"
+      period      = 300
+      stat        = "Average"
+    }
   }
-}
-
-
-resource "aws_cloudwatch_metric_alarm" "credits" {
-  for_each            = local.dbs
-  alarm_name          = "${each.key}-cpu-surplus-credits-charged"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
-  metric_name         = "CPUSurplusCreditsCharged"
-  namespace           = "AWS/${each.value.cw_namespace}"
-  period              = "120"
-  statistic           = "Average"
-  threshold           = "10"
-  alarm_description   = "This metric monitors DocDB CPU surplus credits charged"
-  treat_missing_data  = "ignore"
-  dimensions = {
-    DBInstanceIdentifier = each.key
+  metric_query {
+    expression  = "ANOMALY_DETECTION_BAND(m1, 4)"
+    id          = "ad1"
+    label       = "CPUUtilization (expected)"
+    period      = 0
+    return_data = true
   }
 }
 
@@ -38,14 +37,16 @@ resource "aws_cloudwatch_metric_alarm" "credits" {
 resource "aws_cloudwatch_metric_alarm" "connections" {
   for_each            = local.dbs
   alarm_name          = "${each.key}-database-connections"
-  comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = "1"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "10"
   metric_name         = "DatabaseConnections"
-  namespace           = "AWS/${each.value.engine}"
-  period              = "120"
-  statistic           = "Minimum"
+  namespace           = "AWS/${each.value.cw_namespace}"
+  period              = "60"
+  statistic           = "Average"
   threshold           = each.value.max_connections_threshold
-  alarm_description   = "This metric monitors DocDB database connections"
+  alarm_description   = "${each.value.cw_namespace} DB connections num is above expected limit. Consider increase of DB instance size ${each.value.alarm_mitigation_description}"
+  alarm_actions       = [module.lambda_function.lambda_function_arn]
+  ok_actions          = [module.lambda_function.lambda_function_arn]
   treat_missing_data  = "ignore"
   dimensions = {
     DBInstanceIdentifier = each.key
